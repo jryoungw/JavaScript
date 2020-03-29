@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <title>
+    Dicom Viewer
+  </title>
+  <head>
+    <font size="+4"><center>Upload Dicom</center></font>
+  </head>
+  <body>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js">
+      function readObject(inputObject) {
+            if (window.File && window.FileReader) {
+              if (inputObject.files && inputObject.files[0]) {
+                if (!(/images/i).test(inputObject.files.type)) {
+                  alert("Choose imagee files!");
+                  return false;
+                }
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                  $("#imagesPreview").attr("src", e.target.result);
+                };
+                reader.readAsDataURL(inputObject.files[0]);
+              }
+            } else {
+              alert("No preview. Upgrade Browser");
+            }
+          }
+
+          $("#uploadImage").change(function() {
+            readUploadImage(this);
+          });
+    </script>
+    <!-- <script src="readDicom.js"></script> -->
+  </body>
+</html>
